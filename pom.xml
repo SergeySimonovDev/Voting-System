@@ -27,9 +27,6 @@
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
 
-        <!--Tools-->
-        <ehcache.version>3.6.1</ehcache.version>
-
         <!-- Hibernate -->
         <hibernate.version>5.3.7.Final</hibernate.version>
         <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
@@ -80,14 +77,7 @@
                         <containerId>tomcat9x</containerId>
                         <systemProperties>
                             <file.encoding>UTF-8</file.encoding>
-                            <!--<spring.profiles.active>tomcat</spring.profiles.active>-->
                         </systemProperties>
-                        <!--<dependencies>-->
-                            <!--<dependency>-->
-                                <!--<groupId>org.postgresql</groupId>-->
-                                <!--<artifactId>postgresql</artifactId>-->
-                            <!--</dependency>-->
-                        <!--</dependencies>-->
                     </container>
                     <configuration>
                         <configfiles>
@@ -190,24 +180,6 @@
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
-        </dependency>
-
-        <!-- CACHE -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-jcache</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.cache</groupId>
-            <artifactId>cache-api</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <scope>runtime</scope>
-            <version>${ehcache.version}</version>
         </dependency>
 
         <!--JSON-->
@@ -314,6 +286,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
 </project>
