@@ -1,4 +1,4 @@
-# REST API for graduation project Topjava (without frontend)
+# REST API for graduation project Topjava15 (without frontend)
 
 Used:
 1. Java SE 11
@@ -10,6 +10,8 @@ Used:
 7. JUNIT 5
 8. Logging
 
-->> Curl
+[->> Specification](https://github.com/SergeySimonovDev/Voting-System/blob/master/Specification.md)
 
-->> API Documentation
+[->> Curl](https://github.com/SergeySimonovDev/Voting-System/blob/master/curl.md)
+
+[->> API Documentation](https://github.com/SergeySimonovDev/Voting-System/blob/master/API%20Documentation.md)
