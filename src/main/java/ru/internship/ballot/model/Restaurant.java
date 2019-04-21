@@ -20,7 +20,7 @@ public class Restaurant extends AbstractBaseEntity {
     private String address;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-    @OrderBy("description DESC")
+    @OrderBy("date_time DESC")
     private List<Dish> dishes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")

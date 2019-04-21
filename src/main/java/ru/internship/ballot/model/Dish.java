@@ -37,10 +37,6 @@ public class Dish extends AbstractBaseEntity {
 
     }
 
-    public Dish(Integer id, String description, int price) {
-        this(null, description, price, LocalDateTime.now());
-    }
-
     public Dish(String description, int price, LocalDateTime dateTime) {
         this(null, description, price, dateTime);
     }
