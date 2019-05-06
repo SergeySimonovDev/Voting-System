@@ -9,7 +9,7 @@ import ru.internship.ballot.repository.datajpa.crud.CrudRestaurantRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+/*
 @Repository
 public class RestaurantRepositoryImpl implements RestaurantRepository {
 
@@ -42,3 +42,4 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
 
 
 }
+*/

@@ -11,7 +11,7 @@ import ru.internship.ballot.repository.datajpa.crud.CrudVoteRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+/*
 @Repository
 public class VoteRepositoryImpl implements VoteRepository {
 
@@ -46,3 +46,4 @@ public class VoteRepositoryImpl implements VoteRepository {
         return crudVoteRepository.getAllByUserId(userId);
     }
 }
+*/

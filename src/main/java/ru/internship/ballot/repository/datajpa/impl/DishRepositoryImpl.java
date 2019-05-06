@@ -10,7 +10,7 @@ import ru.internship.ballot.repository.datajpa.crud.CrudRestaurantRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+/*
 @Repository
 public class DishRepositoryImpl implements DishRepository {
 
@@ -46,3 +46,4 @@ public class DishRepositoryImpl implements DishRepository {
     }
 
 }
+*/

@@ -1,16 +1,28 @@
 package ru.internship.ballot.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.internship.ballot.model.Vote;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface VoteRepository {
+@Transactional(readOnly = true)
+public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
-    Vote save(Vote meal, int userId, int restaurantId);
 
-    Optional<Vote> get(int id, int userId);
+    @Override
+    Vote save(Vote vote);
 
-    List<Vote> getByUser(int userId);
+
+    ///Vote save(Vote meal, int userId, int restaurantId);
+
+ /*   @Override
+    Vote getOne(Integer id);
+
+
+    //Optional<Vote> get(int id, int userId);
+
+    List<Vote> getByUser(int userId);*/
 
 }

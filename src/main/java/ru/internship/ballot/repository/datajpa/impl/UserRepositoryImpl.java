@@ -7,7 +7,7 @@ import ru.internship.ballot.repository.UserRepository;
 import ru.internship.ballot.repository.datajpa.crud.CrudUserRepository;
 
 import java.util.Optional;
-
+/*
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
@@ -34,3 +34,4 @@ public class UserRepositoryImpl implements UserRepository {
         return crudUserRepository.getByEmailWithVotes(email);
     }
 }
+*/
