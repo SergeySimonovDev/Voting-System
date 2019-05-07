@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.internship.ballot.model.Dish;
 import ru.internship.ballot.repository.DishRepository;
+import ru.internship.ballot.repository.RestaurantRepository;
 import ru.internship.ballot.service.DishService;
-import ru.internship.ballot.util.exception.NotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,37 +16,43 @@ import static ru.internship.ballot.util.ValidationUtil.checkNotFoundWithId;
 @Service
 public class DishServiceImpl implements DishService {
 
-    private final DishRepository repository;
+    @Autowired
+    private DishRepository dishRepository;
 
     @Autowired
-    public DishServiceImpl(DishRepository repository) {
-        this.repository = repository;
-    }
+    private RestaurantRepository restaurantRepository;
 
     @Override
     public Dish create(Dish dish, int restaurantId) {
         Assert.notNull(dish, "dish must not be null");
-        return repository.save(dish, restaurantId);
+        if (!dish.isNew() && get(dish.getId(), restaurantId) == null) {
+            dish = null;
+        }
+        else {
+            dish.setRestaurant(restaurantRepository.getOne(restaurantId));
+        }
+        return dishRepository.save(dish);
     }
 
     @Override
     public void update(Dish dish, int restaurantId) {
         Assert.notNull(dish, "dish must not be null");
-        Optional.of(repository.save(dish, restaurantId)).orElseThrow(() -> new NotFoundException("id= " + dish.getId()));
+        checkNotFoundWithId(create(dish, restaurantId), dish.getId());
     }
 
     @Override
     public void delete(int id, int restaurantId) {
-        checkNotFoundWithId(repository.delete(id, restaurantId), id);
+        checkNotFoundWithId(dishRepository.delete(id, restaurantId), id);
     }
 
     @Override
     public Dish get(int id, int restaurantId) {
-        return repository.get(id, restaurantId).orElseThrow(() -> new NotFoundException("id= " + id));
+        Optional<Dish> dish = dishRepository.findById(id);
+        return checkNotFoundWithId(dish.isPresent() && dish.get().getId() == restaurantId ? dish.get() : null, id);
     }
 
     @Override
     public List<Dish> getAll(int restaurantId) {
-        return repository.getAll(restaurantId);
+        return dishRepository.getAllByRestaurant(restaurantId);
     }
 }

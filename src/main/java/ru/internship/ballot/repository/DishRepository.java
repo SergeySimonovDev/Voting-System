@@ -17,8 +17,7 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
     @Transactional
     Dish save(Dish dish); // диша сама соединяется с рестораном?
 
-    @Override
-    Dish getOne(Integer id);
+    Optional<Dish> findById(Integer id);
 
     @Modifying
     @Transactional
