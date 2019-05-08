@@ -13,7 +13,7 @@ import java.util.Optional;
 
 import static ru.internship.ballot.util.ValidationUtil.checkNotFoundWithId;
 
-@Service
+@Service("dishService")
 public class DishServiceImpl implements DishService {
 
     @Autowired

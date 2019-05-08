@@ -10,8 +10,8 @@ public interface VoteService {
 
     Vote update(Vote vote, int userId, int restaurantId);
 
-    List<Vote> getByUser(int userId);
+   // List<Vote> getByUser(int userId);
 
-    Vote get(int id, int userId);
+   // Vote get(int id, int userId);
 
 }

@@ -9,6 +9,6 @@ public interface UserService {
 
     User getByEmail(String email) throws NotFoundException;
 
-    User getByEmailWithVotes(String email) throws NotFoundException;
+  //  User getByEmailWithVotes(String email) throws NotFoundException;
 
 }

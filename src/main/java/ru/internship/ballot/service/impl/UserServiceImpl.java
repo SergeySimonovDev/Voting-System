@@ -7,13 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.internship.ballot.AuthorizedUser;
 import ru.internship.ballot.model.User;
-import ru.internship.ballot.model.Vote;
 import ru.internship.ballot.repository.UserRepository;
 import ru.internship.ballot.service.UserService;
-import ru.internship.ballot.util.UserUtil;
 import ru.internship.ballot.util.exception.NotFoundException;
-
-import java.util.Optional;
 
 @Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -34,26 +30,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User user = userRepository.getByEmailWithVotes(email.toLowerCase())
+        User user = userRepository.getByEmail(email.toLowerCase())
                 .orElseThrow(() -> new UsernameNotFoundException("User " + email + " is not found"));
 
-        Optional<Vote> todayVote = UserUtil.getTodayVote(user);
+        return new AuthorizedUser(user);
 
-        AuthorizedUser aUser = new AuthorizedUser(user);
-        aUser.getUserTo().setTodayVote(todayVote);
-
-        return aUser;
     }
 
     @Override
     public User getByEmail(String email) throws NotFoundException {
         Assert.notNull(email, "email must not be null");
         return userRepository.getByEmail(email).orElseThrow(() -> new NotFoundException("email=" + email));
-    }
 
+    }
+/*
     @Override
     public User getByEmailWithVotes(String email) throws NotFoundException {
         Assert.notNull(email, "email must not be null");
         return userRepository.getByEmail(email).orElseThrow(() -> new NotFoundException("email=" + email));
-    }
+    }*/
 }

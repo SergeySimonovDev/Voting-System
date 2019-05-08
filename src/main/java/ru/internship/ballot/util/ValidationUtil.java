@@ -1,18 +1,26 @@
 package ru.internship.ballot.util;
 
 
+import org.springframework.dao.DataIntegrityViolationException;
 import ru.internship.ballot.model.AbstractBaseEntity;
 import ru.internship.ballot.util.exception.NotFoundException;
-import ru.internship.ballot.util.exception.VotingTimeIsOverException;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
 
 public class ValidationUtil {
 
-    public static LocalTime extremeTime = LocalTime.of(11, 0);
+    public static final LocalTime DEADLINE_TIME = LocalTime.of(11, 0, 0);
+    public static LocalTime revoteDeadLine = DEADLINE_TIME;
+
 
     private ValidationUtil() {
+    }
+
+    public static void checkDeadLineTime() {
+        if (LocalTime.now().isAfter(revoteDeadLine)) {
+            throw new DataIntegrityViolationException("VOTE_MODIFICATION_RESTRICTION");
+        }
     }
 
     public static void checkNotFoundWithId(boolean found, int id) {
@@ -34,12 +42,6 @@ public class ValidationUtil {
         }
     }
 
-    public static void checkTimeIsOver(@NotNull LocalTime now) {
-        if (now.isAfter(extremeTime)) {
-            throw new VotingTimeIsOverException("Voting time should not exceed " + extremeTime);
-        }
-    }
-
     public static void checkNew(AbstractBaseEntity entity) {
         if (!entity.isNew()) {
             throw new IllegalArgumentException(entity + " must be new (id=null)");
@@ -55,8 +57,8 @@ public class ValidationUtil {
         }
     }
 
-    public static void setExtremeTime(LocalTime time) {
-        extremeTime = time;
+    public static void setRevoteDeadLine(LocalTime time) {
+        revoteDeadLine = time;
     }
 
 }

@@ -15,4 +15,6 @@ public interface RestaurantService {
     Restaurant get(int id);
 
     List<Restaurant> getAll();
+
+    Restaurant getWithDishes(int id);
 }

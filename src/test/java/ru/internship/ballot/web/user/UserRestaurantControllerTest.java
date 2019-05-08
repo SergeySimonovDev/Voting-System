@@ -56,7 +56,7 @@ public class UserRestaurantControllerTest extends AbstractControllerTest {
     @Test
     public void doVote() throws Exception {
 
-        ValidationUtil.setExtremeTime(LocalTime.now().plusHours(1));
+        ValidationUtil.setDeadlineTime(LocalTime.now().plusHours(1));
 
         mockMvc.perform(get(REST_URL + RESTAURANT1_ID + VOTE_PART_URL)
                 .with(userHttpBasic(USER1)))
@@ -68,7 +68,7 @@ public class UserRestaurantControllerTest extends AbstractControllerTest {
 
     @Test
     public void doVoteTimeIsOver() throws Exception {
-        ValidationUtil.setExtremeTime(LocalTime.of(0, 0));
+        ValidationUtil.setDeadlineTime(LocalTime.of(0, 0));
 
         mockMvc.perform(get(REST_URL + RESTAURANT1_ID + VOTE_PART_URL)
                 .with(userHttpBasic(USER1)))

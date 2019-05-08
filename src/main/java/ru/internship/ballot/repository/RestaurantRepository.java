@@ -23,14 +23,13 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     @Query("DELETE FROM Restaurant r WHERE r.id=:id")
     int delete(@Param("id") int id);
 
-    @Override
-    Restaurant getOne(Integer id);
+    //Optional<Restaurant> findById(Integer id);
 
     @Override
     List<Restaurant> findAll();
 
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.LOAD)
-    @Query("SELECT r FROM Restaurant r WHERE r.id=?1")
-    Restaurant getWithDishes(int id);
+    @Query("SELECT r FROM Restaurant r WHERE r.id=:id")
+    Restaurant getWithDishes(@Param("id") int id);
 }
