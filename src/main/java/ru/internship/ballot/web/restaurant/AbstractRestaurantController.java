@@ -8,8 +8,7 @@ import ru.internship.ballot.service.RestaurantService;
 
 import java.util.List;
 
-import static ru.internship.ballot.util.ValidationUtil.checkIdConsistent;
-import static ru.internship.ballot.util.ValidationUtil.checkNew;
+import static ru.internship.ballot.util.ValidationUtil.*;
 
 public abstract class AbstractRestaurantController {
 
@@ -18,11 +17,12 @@ public abstract class AbstractRestaurantController {
     @Autowired
     private RestaurantService service;
 
+    /*
     // need?
     public Restaurant get(int id) {
         log.info("get restaurant {} without dishes", id);
         return service.get(id);
-    }
+    }*/
 
     public Restaurant getWithDishes(int id) {
         log.info("get restaurant {} with dishes", id);
@@ -30,7 +30,7 @@ public abstract class AbstractRestaurantController {
     }
 
     public List<Restaurant> getAll() {
-        log.info("get all");
+        log.info("get all restaurants");
         return service.getAll();
     }
 
@@ -40,7 +40,7 @@ public abstract class AbstractRestaurantController {
     }
 
     public void update(Restaurant restaurant, int id) {
-        checkIdConsistent(restaurant, id);
+        assureIdConsistent(restaurant, id);
         log.info("update restaurant {}", id);
         service.update(restaurant);
     }
