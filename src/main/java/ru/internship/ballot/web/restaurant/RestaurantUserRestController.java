@@ -15,7 +15,7 @@ public class RestaurantUserRestController extends AbstractRestaurantController {
 
     static final String REST_URL = "/rest/profile/restaurants";
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Restaurant getRestaurant(@PathVariable int id) {
         return super.getWithDishes(id);
     }
