@@ -14,7 +14,7 @@ public class RestaurantAdminRestController extends AbstractRestaurantController 
     static final String REST_URL = "/rest/admin/restaurants";
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Restaurant get(@PathVariable("id") int id) {
+    public Restaurant get(@PathVariable int id) {
         return super.getWithDishes(id);
     }
 
@@ -25,13 +25,13 @@ public class RestaurantAdminRestController extends AbstractRestaurantController 
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") int id) {
+    public void delete(@PathVariable int id) {
         super.delete(id);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id) {
+    public void update(@RequestBody Restaurant restaurant, @PathVariable int id) {
         super.update(restaurant, id);
     }
 

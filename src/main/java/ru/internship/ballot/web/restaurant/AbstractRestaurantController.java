@@ -17,15 +17,8 @@ public abstract class AbstractRestaurantController {
     @Autowired
     private RestaurantService service;
 
-    /*
-    // need?
-    public Restaurant get(int id) {
-        log.info("get restaurant {} without dishes", id);
-        return service.get(id);
-    }*/
-
     public Restaurant getWithDishes(int id) {
-        log.info("get restaurant {} with dishes", id);
+        log.info("get restaurant {}", id);
         return service.getWithDishes(id);
     }
 
