@@ -2,6 +2,7 @@ package ru.internship.ballot.util;
 
 
 import org.springframework.dao.DataIntegrityViolationException;
+import ru.internship.ballot.HasId;
 import ru.internship.ballot.model.AbstractBaseEntity;
 import ru.internship.ballot.util.exception.NotFoundException;
 
@@ -45,6 +46,15 @@ public class ValidationUtil {
     public static void checkNew(AbstractBaseEntity entity) {
         if (!entity.isNew()) {
             throw new IllegalArgumentException(entity + " must be new (id=null)");
+        }
+    }
+
+    public static void checkIdConsistent(HasId bean, int id) {
+//      http://stackoverflow.com/a/32728226/548473
+        if (bean.isNew()) {
+            bean.setId(id);
+        } else if (bean.getId() != id) {
+            throw new IllegalArgumentException(bean + " must be with id=" + id);
         }
     }
 
