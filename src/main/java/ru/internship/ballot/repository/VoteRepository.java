@@ -5,10 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import ru.internship.ballot.model.Dish;
 import ru.internship.ballot.model.Vote;
-
-import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
