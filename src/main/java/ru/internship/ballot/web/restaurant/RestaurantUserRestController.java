@@ -24,4 +24,5 @@ public class RestaurantUserRestController extends AbstractRestaurantController {
     public List<Restaurant> getAllRestaurants() {
         return super.getAll();
     }
+
 }

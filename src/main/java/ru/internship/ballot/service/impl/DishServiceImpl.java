@@ -47,7 +47,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish get(int id, int restaurantId) {
-        Optional<Dish> dish = dishRepository.findById(id);
+        Optional<Dish> dish = dishRepository.get(id, restaurantId);
         return checkNotFoundWithId(dish.isPresent() && dish.get().getId() == restaurantId ? dish.get() : null, id);
     }
 

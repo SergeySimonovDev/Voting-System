@@ -1,39 +1,45 @@
 package ru.internship.ballot.web.vote;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.internship.ballot.model.Vote;
+import ru.internship.ballot.service.VoteService;
+import ru.internship.ballot.web.SecurityUtil;
+import java.time.LocalDate;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = VoteRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class VoteRestController {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     static final String REST_URL = "/rest/profile/votes";
 
     @Autowired
-    private
+    private VoteService service;
 
     @GetMapping(value = "/{restaurantId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void vote(@PathVariable int restaurantId) {
 
-      /*  LocalDateTime now = LocalDateTime.now();
-        checkTimeIsOver(now.toLocalTime());
-
-        UserTo userTo = SecurityUtil.get().getUserTo();
         int userId = SecurityUtil.authUserId();
+        Optional<Vote> vote = service.getTodayVote(userId, LocalDate.now());
 
-        Vote vote = userTo.getTodayVote().orElseGet(() -> new Vote(now.toLocalDate()));
+        vote.ifPresentOrElse(
+                v -> {
+                    log.info("update vote {} for user {} and restaurant {}", v.getId(), userId, restaurantId);
+                    service.update(v, userId, restaurantId);
+                },
+                () -> {
+                    log.info("create vote for user {} and restaurant {}", userId, restaurantId);
+                    service.create(userId, restaurantId);
+                });
 
-        if (vote.isNew()) {
-            log.info("create vote {} for restaurant {} from user {}", vote, restaurantId, userId);
-            vote = voteService.create(vote, userId, restaurantId);
-        } else {
-            log.info("update vote {} for restaurant {} from user {}", vote, restaurantId, userId);
-            vote = voteService.update(vote, userId, restaurantId);
-        }
+    }
 
-        userTo.setTodayVote(Optional.of(vote));
-        SecurityUtil.get().update(userTo);
-    }*/
 }

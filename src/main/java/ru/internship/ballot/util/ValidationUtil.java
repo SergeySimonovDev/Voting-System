@@ -1,12 +1,10 @@
 package ru.internship.ballot.util;
 
-
 import org.springframework.dao.DataIntegrityViolationException;
-import ru.internship.ballot.HasId;
+
 import ru.internship.ballot.model.AbstractBaseEntity;
 import ru.internship.ballot.util.exception.NotFoundException;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
 
 public class ValidationUtil {
