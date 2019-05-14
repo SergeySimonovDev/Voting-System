@@ -26,7 +26,7 @@ public class DishServiceImpl implements DishService {
     public Dish create(Dish dish, int restaurantId) {
         Assert.notNull(dish, "dish must not be null");
         if (!dish.isNew() && get(dish.getId(), restaurantId) == null) {
-            dish = null;
+            return null;
         }
         else {
             dish.setRestaurant(restaurantRepository.getOne(restaurantId));
