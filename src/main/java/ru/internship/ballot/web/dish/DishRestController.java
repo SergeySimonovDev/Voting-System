@@ -15,8 +15,8 @@ import static ru.internship.ballot.util.ValidationUtil.assureIdConsistent;
 import static ru.internship.ballot.util.ValidationUtil.checkNew;
 
 @RestController
-@RequestMapping(value = DishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class DishController {
+@RequestMapping(value = DishRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class DishRestController {
 
     static final String REST_URL = "/rest/admin/restaurants/{restaurantId}/dishes";
 
@@ -27,35 +27,30 @@ public class DishController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Dish> getAll(@PathVariable("restaurantId") int restaurantId) {
-        log.info("getAllDishesByRestaurant for restaurant {}", restaurantId);
+        log.info("get all dishes for restaurant {}", restaurantId);
         return service.getAll(restaurantId);
-
     }
 
     @GetMapping(value = "/{dishId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Dish get(@PathVariable("restaurantId") int restaurantId, @PathVariable("dishId") int id) {
         log.info("get dish {} for restaurant {}", id, restaurantId);
         return service.get(id, restaurantId);
-
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Dish create(@PathVariable("restaurantId") int restaurantId, @RequestBody Dish dish) {
+    public Dish create(@RequestBody Dish dish, @PathVariable("restaurantId") int restaurantId) {
         checkNew(dish);
-        log.info("create {} for restaurant {}", dish, restaurantId);
-
+        log.info("create dish {} for restaurant {}", dish, restaurantId);
         return service.create(dish, restaurantId);
-
     }
 
     @PutMapping(value = "/{dishId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@PathVariable("restaurantId") int restaurantId, @PathVariable("dishId") int id, @RequestBody Dish dish) {
+    public void update(@RequestBody Dish dish, @PathVariable("restaurantId") int restaurantId, @PathVariable("dishId") int id) {
         assureIdConsistent(dish, id);
-        log.info("update {} for restaurant {}", dish, restaurantId);
+        log.info("update dish {} for restaurant {}", dish, restaurantId);
         service.update(dish, restaurantId);
-
     }
 
     @DeleteMapping(value = "/{dishId}")
@@ -63,7 +58,6 @@ public class DishController {
     public void delete(@PathVariable("restaurantId") int restaurantId, @PathVariable("dishId") int id) {
         log.info("delete dish {} for restaurant {}", id, restaurantId);
         service.delete(id, restaurantId);
-
     }
 
 }
