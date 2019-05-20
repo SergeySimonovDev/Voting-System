@@ -11,11 +11,11 @@ import static ru.internship.ballot.TestUtil.readListFromJsonMvcResult;
 import static ru.internship.ballot.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
-    public static final int RESTAURANT1_ID = START_SEQ + 3;
-    public static final int RESTAURANT2_ID = START_SEQ + 4;
+    public static final int FIRST_RESTAURANT_ID = START_SEQ + 3;
+    public static final int SECOND_RESTAURANT_ID = START_SEQ + 4;
 
-    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT1_ID, "Starbucks", "Spb, Tulskay ul, d.96");
-    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT2_ID, "Tokyo City", "Spb, pr. Tvorskogo, d.11");
+    public static final Restaurant FIRST_RESTAURANT = new Restaurant(FIRST_RESTAURANT_ID, "Starbucks", "Spb, Tulskay ul, d.96");
+    public static final Restaurant SECOND_RESTAURANT = new Restaurant(SECOND_RESTAURANT_ID, "Tokyo City", "Spb, pr. Tvorskogo, d.11");
 
     public static Restaurant getCreated() {
         return new Restaurant(null, "New restaurant", "Spb, ul. nothing, d. 0");
@@ -26,7 +26,7 @@ public class RestaurantTestData {
     }
 
     public static Restaurant getUpdated() {
-        return new Restaurant(RESTAURANT1_ID, "Updated restaurant", RESTAURANT1.getAddress());
+        return new Restaurant(FIRST_RESTAURANT_ID, "Updated restaurant", FIRST_RESTAURANT.getAddress());
     }
 
     public static void assertMatch(Restaurant actual, Restaurant expected) {

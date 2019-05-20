@@ -27,8 +27,7 @@ public class DishServiceImpl implements DishService {
         Assert.notNull(dish, "dish must not be null");
         if (!dish.isNew() && get(dish.getId(), restaurantId) == null) {
             return null;
-        }
-        else {
+        } else {
             dish.setRestaurant(restaurantRepository.getOne(restaurantId));
         }
         return dishRepository.save(dish);
@@ -42,13 +41,13 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public void delete(int id, int restaurantId) {
-        checkNotFoundWithId(dishRepository.delete(id, restaurantId), id);
+        checkNotFoundWithId(dishRepository.delete(id, restaurantId) != 0, id);
     }
 
     @Override
     public Dish get(int id, int restaurantId) {
-        Optional<Dish> dish = dishRepository.get(id, restaurantId);
-        return checkNotFoundWithId(dish.isPresent() && dish.get().getId() == restaurantId ? dish.get() : null, id);
+        Optional<Dish> dish = dishRepository.findById(id);
+        return checkNotFoundWithId(dish.isPresent() && dish.get().getRestaurant().getId() == restaurantId ? dish.get() : null, id);
     }
 
     @Override

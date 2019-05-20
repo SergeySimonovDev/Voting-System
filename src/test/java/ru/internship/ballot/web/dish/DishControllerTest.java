@@ -14,14 +14,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.internship.ballot.DishTestData.*;
-import static ru.internship.ballot.RestaurantTestData.RESTAURANT1_ID;
 import static ru.internship.ballot.TestUtil.readFromJsonResultActions;
 import static ru.internship.ballot.TestUtil.userHttpBasic;
 import static ru.internship.ballot.UserTestData.ADMIN;
 
 public class DishControllerTest extends AbstractControllerTest {
 
-    private static String REST_URL = DishRestController.REST_URL + '/';
+  /*  private static String REST_URL = DishRestController.REST_URL + '/';
 
     @Autowired
     private DishService service;
@@ -100,5 +99,5 @@ public class DishControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNotFound());
-    }
+    }*/
 }
