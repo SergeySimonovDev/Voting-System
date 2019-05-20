@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.internship.ballot.model.Restaurant;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
@@ -22,7 +23,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     int delete(@Param("id") int id);
 
     @Override
-    List<Restaurant> findAll();
+    Optional<Restaurant> findById(Integer integer);
+
+    List<Restaurant> getAllByOrderByTitle();
 
     //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.LOAD)

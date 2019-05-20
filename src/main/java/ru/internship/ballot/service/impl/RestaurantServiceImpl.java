@@ -8,6 +8,7 @@ import ru.internship.ballot.repository.RestaurantRepository;
 import ru.internship.ballot.service.RestaurantService;
 
 import java.util.List;
+import java.util.Optional;
 
 import static ru.internship.ballot.util.ValidationUtil.checkNotFoundWithId;
 
@@ -26,26 +27,27 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
-        checkNotFoundWithId(restaurantRepository.save(restaurant), restaurant.getId());
+        restaurantRepository.save(restaurant);
     }
 
     @Override
     public void delete(int id) {
-        checkNotFoundWithId(restaurantRepository.delete(id), id);
+        checkNotFoundWithId(restaurantRepository.delete(id) != 0, id);
     }
 
     @Override
     public Restaurant get(int id) {
-        return checkNotFoundWithId(restaurantRepository.getOne(id), id);
+        Optional<Restaurant> restaurant = restaurantRepository.findById(id);
+        return checkNotFoundWithId(restaurant.orElse(null), id);
     }
 
     @Override
     public List<Restaurant> getAll() {
-        return restaurantRepository.findAll();
+        return restaurantRepository.getAllByOrderByTitle();
     }
 
     @Override
     public Restaurant getWithDishes(int id) {
-        return restaurantRepository.getWithDishes(id);
+        return checkNotFoundWithId(restaurantRepository.getWithDishes(id), id);
     }
 }

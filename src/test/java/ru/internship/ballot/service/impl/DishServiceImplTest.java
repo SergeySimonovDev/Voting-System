@@ -31,14 +31,14 @@ class DishServiceImplTest {
     void create() {
         Dish created = DishTestData.getCreated();
         service.create(created, FIRST_RESTAURANT_ID);
-        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH2, DISH1, created, DISH3, DISH4);
+        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH4, DISH3, created, DISH1, DISH2);
     }
 
     @Test
     void update() {
         Dish updated = DishTestData.getUpdated();
         service.update(updated, FIRST_RESTAURANT_ID);
-        assertMatch(service.getAll(FIRST_RESTAURANT_ID), updated, DISH2, DISH3, DISH4);
+        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH4, DISH3, DISH2, updated);
     }
 
     @Test
@@ -50,7 +50,7 @@ class DishServiceImplTest {
     @Test
     void delete() {
         service.delete(DISH1_ID, FIRST_RESTAURANT_ID);
-        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH2, DISH3, DISH4);
+        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH4, DISH3, DISH2);
     }
 
     @Test
@@ -73,6 +73,6 @@ class DishServiceImplTest {
 
     @Test
     void getAll() {
-        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH2, DISH1, DISH3, DISH4);
+        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH4, DISH3, DISH1, DISH2);
     }
 }

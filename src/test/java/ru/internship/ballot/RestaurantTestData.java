@@ -18,15 +18,15 @@ public class RestaurantTestData {
     public static final Restaurant SECOND_RESTAURANT = new Restaurant(SECOND_RESTAURANT_ID, "Tokyo City", "Spb, pr. Tvorskogo, d.11");
 
     public static Restaurant getCreated() {
-        return new Restaurant(null, "New restaurant", "Spb, ul. nothing, d. 0");
-    }
-
-    public static Restaurant getDuplicate() {
-        return new Restaurant(null, "Starbucks", "Spb, Tulskay ul, d.96");
+        return new Restaurant(null, "New restaurant", "Spb, st. nothing, h. 0");
     }
 
     public static Restaurant getUpdated() {
         return new Restaurant(FIRST_RESTAURANT_ID, "Updated restaurant", FIRST_RESTAURANT.getAddress());
+    }
+
+    public static Restaurant getDuplicate() {
+        return new Restaurant(null, "Starbucks", "Spb, Tulskay ul, d.96");
     }
 
     public static void assertMatch(Restaurant actual, Restaurant expected) {
