@@ -11,15 +11,13 @@ import ru.internship.ballot.repository.UserRepository;
 import ru.internship.ballot.service.UserService;
 import ru.internship.ballot.util.exception.NotFoundException;
 
+import java.util.List;
+
 @Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private final UserRepository userRepository;
-
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     public User create(User user) {
@@ -43,10 +41,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.getByEmail(email).orElseThrow(() -> new NotFoundException("email=" + email));
 
     }
-/*
+
     @Override
-    public User getByEmailWithVotes(String email) throws NotFoundException {
-        Assert.notNull(email, "email must not be null");
-        return userRepository.getByEmail(email).orElseThrow(() -> new NotFoundException("email=" + email));
-    }*/
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+
 }
