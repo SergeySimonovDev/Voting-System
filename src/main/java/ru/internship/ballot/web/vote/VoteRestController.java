@@ -28,7 +28,7 @@ public class VoteRestController {
     public void vote(@PathVariable int restaurantId) {
 
         int userId = SecurityUtil.authUserId();
-        Optional<Vote> vote = service.getTodayVote(userId, LocalDate.now());
+   /*     Optional<Vote> vote = service.getTodayVote(userId);
 
         vote.ifPresentOrElse(
                 v -> {
@@ -38,7 +38,7 @@ public class VoteRestController {
                 () -> {
                     log.info("create vote for user {} and restaurant {}", userId, restaurantId);
                     service.create(userId, restaurantId);
-                });
+                });*/
 
     }
 

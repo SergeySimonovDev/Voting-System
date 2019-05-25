@@ -12,9 +12,11 @@ import ru.internship.ballot.service.VoteService;
 import ru.internship.ballot.util.exception.NotFoundException;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import static ru.internship.ballot.util.ValidationUtil.checkDeadLineTime;
+import static ru.internship.ballot.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("voteService")
 public class VoteServiceImpl implements VoteService {
@@ -44,7 +46,8 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public Optional<Vote> getTodayVote(int userId, LocalDate todayDate) {
-        return voteRepository.getTodayVote(userId, todayDate);
+    public Vote getTodayVote(int userId) {
+        return voteRepository.getTodayVote(userId, LocalDate.now());
     }
+
 }

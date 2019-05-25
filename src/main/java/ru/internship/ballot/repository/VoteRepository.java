@@ -8,20 +8,21 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.internship.ballot.model.Vote;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
 public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
     @Override
+    @Transactional
     Vote save(Vote vote);
 
     @Modifying
     @Query("SELECT v FROM Vote v WHERE v.id=:id AND v.user.id=:userId")
     Optional<Vote> get(@Param("id") int id, @Param("userId") int userId);
 
-    @Modifying
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:todayDate")
-    Optional<Vote> getTodayVote(@Param("userId") int userId, @Param("todayDate") LocalDate todayDate);
+    Vote getTodayVote(@Param("userId") int userId, @Param("todayDate") LocalDate todayDate);
 
 }

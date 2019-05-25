@@ -11,8 +11,4 @@ public interface UserService {
 
     User getByEmail(String email) throws NotFoundException;
 
-    List<User> getAll();
-
-  //  User getByEmailWithVotes(String email) throws NotFoundException;
-
 }

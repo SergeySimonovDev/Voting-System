@@ -9,6 +9,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.internship.ballot.model.User;
+import ru.internship.ballot.repository.UserRepository;
 import ru.internship.ballot.service.UserService;
 import ru.internship.ballot.util.exception.NotFoundException;
 
@@ -25,12 +26,15 @@ class UserServiceImplTest {
 
     @Autowired
     private UserService service;
+    // gives additional functionality for testing
+    @Autowired
+    private UserRepository repository;
 
     @Test
     void create() {
         User created = getCreated();
         service.create(created);
-        assertMatch(service.getAll(), USER1, USER2, ADMIN, created);
+        assertMatch(repository.findAll(), USER1, USER2, ADMIN, created);
     }
 
     @Test
@@ -50,10 +54,5 @@ class UserServiceImplTest {
     void getByEmailNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.getByEmail("qwerty@microsoft.com"));
-    }
-
-    @Test
-    void getAll() {
-        assertMatch(service.getAll(), USER1, USER2, ADMIN);
     }
 }
