@@ -20,7 +20,7 @@ import static ru.internship.ballot.UserTestData.ADMIN;
 
 public class DishControllerTest extends AbstractControllerTest {
 
-  /*  private static String REST_URL = DishRestController.REST_URL + '/';
+ /*   private static String REST_URL = DishRestController.REST_URL + '/';
 
     @Autowired
     private DishService service;
