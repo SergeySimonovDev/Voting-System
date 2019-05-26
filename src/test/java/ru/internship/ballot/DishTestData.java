@@ -3,11 +3,11 @@ package ru.internship.ballot;
 import org.springframework.test.web.servlet.ResultMatcher;
 import ru.internship.ballot.model.Dish;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-import static java.time.LocalDateTime.of;
+import static java.time.LocalDate.of;
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.internship.ballot.TestUtil.readFromJsonMvcResult;
 import static ru.internship.ballot.TestUtil.readListFromJsonMvcResult;
@@ -17,7 +17,7 @@ public class DishTestData {
 
     public static final int DISH1_ID = START_SEQ + 5;
 
-    private static final LocalDateTime dateAddByRestaurant = of(2018, Month.DECEMBER, 4, 6, 0);
+    private static final LocalDate dateAddByRestaurant = of(2018, Month.DECEMBER, 4);
 
     public static final Dish DISH1 = new Dish(DISH1_ID, "Steak", 350, dateAddByRestaurant);
     public static final Dish DISH2 = new Dish(DISH1_ID + 1, "Tomato soup", 150, dateAddByRestaurant);
@@ -26,11 +26,11 @@ public class DishTestData {
 
     public static Dish getCreated() {
         return new Dish(null, "New dish", 330,
-                of(2018, Month.DECEMBER, 5, 10, 0));
+                of(2018, Month.DECEMBER, 5));
     }
 
     public static Dish getUpdated() {
-        return new Dish(DISH1.getId(), "Updated dish", 200, DISH1.getDateTime());
+        return new Dish(DISH1.getId(), "Updated dish", 200, DISH1.getDate());
     }
 
     public static void assertMatch(Dish actual, Dish expected) {

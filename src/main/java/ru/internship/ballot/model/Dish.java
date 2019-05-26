@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "dishes")
@@ -31,21 +31,21 @@ public class Dish extends AbstractBaseEntity {
 
     @Column(name = "date_time", nullable = false)
     @NotNull
-    private LocalDateTime dateTime;
+    private LocalDate date;
 
     public Dish() {
 
     }
 
-    public Dish(String description, int price, LocalDateTime dateTime) {
-        this(null, description, price, dateTime);
+    public Dish(String description, int price, LocalDate date) {
+        this(null, description, price, date);
     }
 
-    public Dish(Integer id, String description, int price, LocalDateTime dateTime) {
+    public Dish(Integer id, String description, int price, LocalDate date) {
         super(id);
         this.description = description;
         this.price = price;
-        this.dateTime = dateTime;
+        this.date = date;
     }
 
     public Restaurant getRestaurant() {
@@ -72,12 +72,12 @@ public class Dish extends AbstractBaseEntity {
         this.price = price;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Dish extends AbstractBaseEntity {
                 "id=" + id +
                 ", description='" + description +
                 ", price=" + price +
-                ", dateTime=" + dateTime +
+                ", date=" + date +
                 '}';
     }
 }

@@ -68,7 +68,7 @@
     Transfer-Encoding: chunked
     Date: Wed, 09 Jan 2019 11:26:48 GMT
 
-    {"id":100010,"restaurant":null,"description":"Fish","price":250,"dateTime":"2018-12-04T07:00:00"}
+    {"id":100010,"restaurant":null,"description":"Fish","price":250,"date":"2018-12-04T07:00:00"}
 
 
 ## Delete a specific Dish (Admin)
@@ -122,7 +122,7 @@
 
 `PUT /ballot/rest/admin/restaurants/{restaurantId}/dishes/{dishId}`
 
-    curl -s -X PUT -d '{"description":"Updated Dish" ,"price":200, "dateTime":"2019-01-02T07:00"}' 
+    curl -s -X PUT -d '{"description":"Updated Dish" ,"price":200, "date":"2019-01-02T07:00"}' 
     -H 'Content-Type: application/json' http://localhost:8080/ballot/rest/admin/restaurants/100004/dishes/100010 
     --user admin@gmail.com:admin
 
@@ -183,11 +183,11 @@
     Transfer-Encoding: chunked
     Date: Wed, 09 Jan 2019 11:55:50 GMT
 
-    [{"id":100013,"restaurant":null,"description":"Cheesecake","price":130,"dateTime":"2018-12-04T07:00:00"},
-    {"id":100010,"restaurant":null,"description":"Fish","price":250,"dateTime":"2018-12-04T07:00:00"},
-    {"id":100012,"restaurant":null,"description":"Gazpacho","price":300,"dateTime":"2018-12-04T07:00:00"},
-    {"id":100011,"restaurant":null,"description":"Ice tea","price":70,"dateTime":"2018-12-04T07:00:00"},
-    {"id":100009,"restaurant":null,"description":"Vegetable salad","price":200,"dateTime":"2018-12-04T07:00:00"}]
+    [{"id":100013,"restaurant":null,"description":"Cheesecake","price":130,"date":"2018-12-04T07:00:00"},
+    {"id":100010,"restaurant":null,"description":"Fish","price":250,"date":"2018-12-04T07:00:00"},
+    {"id":100012,"restaurant":null,"description":"Gazpacho","price":300,"date":"2018-12-04T07:00:00"},
+    {"id":100011,"restaurant":null,"description":"Ice tea","price":70,"date":"2018-12-04T07:00:00"},
+    {"id":100009,"restaurant":null,"description":"Vegetable salad","price":200,"date":"2018-12-04T07:00:00"}]
 
 ## Vote (Create Or Update) For a specific Restaurant (User)
 
