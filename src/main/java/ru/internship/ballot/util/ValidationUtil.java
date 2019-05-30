@@ -61,4 +61,8 @@ public class ValidationUtil {
         revoteDeadLine = time;
     }
 
+    public static void setDefaultDeadLine() {
+        revoteDeadLine = DEADLINE_TIME;
+    }
+
 }

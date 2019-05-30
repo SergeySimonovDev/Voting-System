@@ -1,5 +1,6 @@
 package ru.internship.ballot.service.impl;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ class VoteServiceImplTest {
     // gives additional functionality for testing
     @Autowired
     private VoteRepository repository;
+
+    @BeforeEach
+    void setDefaultDeadLine() {
+        ValidationUtil.setDefaultDeadLine();
+    }
 
     @Test
     void create() {
