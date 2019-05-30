@@ -29,23 +29,27 @@ public class Dish extends AbstractBaseEntity {
     @Range(min = 10, max = 2000)
     private int price;
 
-    @Column(name = "date_time", nullable = false)
+    @Column(name = "date", nullable = false)
     @NotNull
     private LocalDate date;
+
+    @Column(name = "is_menu", nullable = false)
+    private boolean menu;
 
     public Dish() {
 
     }
 
-    public Dish(String description, int price, LocalDate date) {
-        this(null, description, price, date);
+    public Dish(String description, int price, LocalDate date, boolean menu) {
+        this(null, description, price, date, menu);
     }
 
-    public Dish(Integer id, String description, int price, LocalDate date) {
+    public Dish(Integer id, String description, int price, LocalDate date, boolean menu) {
         super(id);
         this.description = description;
         this.price = price;
         this.date = date;
+        this.menu = menu;
     }
 
     public Restaurant getRestaurant() {
@@ -80,6 +84,14 @@ public class Dish extends AbstractBaseEntity {
         this.date = date;
     }
 
+    public boolean isMenu() {
+        return menu;
+    }
+
+    public void setMenu(boolean menu) {
+        this.menu = menu;
+    }
+
     @Override
     public String toString() {
         return "Dish{" +
@@ -87,6 +99,7 @@ public class Dish extends AbstractBaseEntity {
                 ", description='" + description +
                 ", price=" + price +
                 ", date=" + date +
+                ", menu=" + menu +
                 '}';
     }
 }

@@ -35,7 +35,7 @@ CREATE TABLE dishes
     description   VARCHAR(255)          NOT NULL,
     price         INTEGER               NOT NULL,
     date          DATE    DEFAULT now() NOT NULL,
-    is_menu       BOOLEAN DEFAULT TRUE  NOT NULL,
+    is_menu       BOOLEAN DEFAULT FALSE  NOT NULL,
     FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 

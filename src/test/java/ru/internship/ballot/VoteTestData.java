@@ -16,7 +16,7 @@ import static ru.internship.ballot.model.AbstractBaseEntity.START_SEQ;
 
 public class VoteTestData {
 
-    public static final int VOTE1_ID_USER1 = START_SEQ + 14;
+    public static final int VOTE1_ID_USER1 = START_SEQ + 19;
     public static final int VOTE2_ID_USER1 = VOTE1_ID_USER1 + 2;
     public static final int NEXT_VOTE_ID = VOTE2_ID_USER1 + 2;
 

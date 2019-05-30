@@ -83,7 +83,7 @@ class RestaurantServiceImplTest {
     @Test
     void getWithDishes() {
         Restaurant restaurant = service.getWithDishes(FIRST_RESTAURANT_ID);
-        DishTestData.assertMatch(restaurant.getDishes(), DISH4, DISH3, DISH1, DISH2);
+        DishTestData.assertMatch(restaurant.getDishes(), DISH6, DISH5, DISH3, DISH4);
     }
 
     @Test

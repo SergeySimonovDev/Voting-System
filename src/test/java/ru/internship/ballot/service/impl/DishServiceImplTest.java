@@ -31,18 +31,18 @@ class DishServiceImplTest {
     void create() {
         Dish created = DishTestData.getCreated();
         service.create(created, FIRST_RESTAURANT_ID);
-        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH4, DISH3, created, DISH1, DISH2);
+        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH1, created, DISH3, DISH4);
     }
 
     @Test
     void update() {
         Dish updated = DishTestData.getUpdated();
         service.update(updated, FIRST_RESTAURANT_ID);
-        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH4, DISH3, DISH2, updated);
+        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH3, DISH4, updated);
     }
 
     @Test
-    void updateNotFound(){
+    void updateNotFound() {
         assertThrows(NotFoundException.class, () -> service.update(DISH1, SECOND_RESTAURANT_ID));
     }
 
@@ -50,7 +50,7 @@ class DishServiceImplTest {
     @Test
     void delete() {
         service.delete(DISH1_ID, FIRST_RESTAURANT_ID);
-        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH4, DISH3, DISH2);
+        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH3, DISH4);
     }
 
     @Test
@@ -73,6 +73,11 @@ class DishServiceImplTest {
 
     @Test
     void getAll() {
-        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH4, DISH3, DISH1, DISH2);
+        assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH1, DISH3, DISH4);
+    }
+
+    @Test
+    void getMenu() {
+        assertMatch(service.getMenu(FIRST_RESTAURANT_ID), DISH6, DISH5, DISH3, DISH4);
     }
 }

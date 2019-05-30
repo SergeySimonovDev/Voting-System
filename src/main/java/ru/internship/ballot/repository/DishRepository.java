@@ -27,4 +27,7 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
     @Query("SELECT d FROM Dish d WHERE d.restaurant.id=:restaurantId ORDER BY d.description ASC")
     List<Dish> getAllByRestaurant(@Param("restaurantId") int restaurantId);
 
+    @Query("SELECT d FROM Dish d WHERE d.restaurant.id=:restaurantId AND d.menu = true ORDER BY d.description ASC")
+    List<Dish> getMenu(@Param("restaurantId") int restaurantId);
+
 }

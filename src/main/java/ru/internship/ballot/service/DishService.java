@@ -15,4 +15,6 @@ public interface DishService {
     Dish get(int id, int restaurantId);
 
     List<Dish> getAll(int restaurantId);
+
+    List<Dish> getMenu(int restaurantId);
 }
