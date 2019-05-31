@@ -18,9 +18,9 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
     @Transactional
     Vote save(Vote vote);
 
-    @Modifying
+   /* @Modifying
     @Query("SELECT v FROM Vote v WHERE v.id=:id AND v.user.id=:userId")
-    Optional<Vote> get(@Param("id") int id, @Param("userId") int userId);
+    Optional<Vote> get(@Param("id") int id, @Param("userId") int userId);*/
 
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:todayDate")
     Vote getTodayVote(@Param("userId") int userId, @Param("todayDate") LocalDate todayDate);
