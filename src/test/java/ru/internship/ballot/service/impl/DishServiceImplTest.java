@@ -28,56 +28,56 @@ class DishServiceImplTest {
     private DishService service;
 
     @Test
-    void create() {
+    void testCreate() {
         Dish created = DishTestData.getCreated();
         service.create(created, FIRST_RESTAURANT_ID);
         assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH1, created, DISH3, DISH4);
     }
 
     @Test
-    void update() {
+    void testUpdate() {
         Dish updated = DishTestData.getUpdated();
         service.update(updated, FIRST_RESTAURANT_ID);
         assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH3, DISH4, updated);
     }
 
     @Test
-    void updateNotFound() {
+    void testUpdateNotFound() {
         assertThrows(NotFoundException.class, () -> service.update(DISH1, SECOND_RESTAURANT_ID));
     }
 
 
     @Test
-    void delete() {
+    void testDelete() {
         service.delete(DISH1_ID, FIRST_RESTAURANT_ID);
         assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH3, DISH4);
     }
 
     @Test
-    void deleteNotFound() {
+    void testDeleteNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.delete(DISH1_ID, 3));
     }
 
     @Test
-    void get() {
+    void testGet() {
         Dish dish = service.get(DISH1_ID, FIRST_RESTAURANT_ID);
         assertMatch(dish, DISH1);
     }
 
     @Test
-    void getNotFound() {
+    void testGetNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.get(DISH1_ID, SECOND_RESTAURANT_ID));
     }
 
     @Test
-    void getAll() {
+    void testGetAll() {
         assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH1, DISH3, DISH4);
     }
 
     @Test
-    void getMenu() {
+    void testGetMenu() {
         assertMatch(service.getMenu(FIRST_RESTAURANT_ID), DISH6, DISH5, DISH3, DISH4);
     }
 }

@@ -31,63 +31,63 @@ class RestaurantServiceImplTest {
     private RestaurantService service;
 
     @Test
-    void create() {
+    void testCreate() {
         Restaurant created = RestaurantTestData.getCreated();
         service.create(created);
         assertMatch(service.getAll(), created, FIRST_RESTAURANT, SECOND_RESTAURANT);
     }
 
     @Test
-    void duplicate() {
+    void testDuplicate() {
         Restaurant duplicate = RestaurantTestData.getDuplicate();
         assertThrows(DataAccessException.class, () ->
                 service.create(duplicate));
     }
 
     @Test
-    void update() {
+    void testUpdate() {
         Restaurant updated = RestaurantTestData.getUpdated();
         service.update(updated);
         assertMatch(service.getAll(), SECOND_RESTAURANT, updated);
     }
 
     @Test
-    void delete() {
+    void testDelete() {
         service.delete(FIRST_RESTAURANT_ID);
         assertMatch(service.getAll(), SECOND_RESTAURANT);
     }
 
     @Test
-    void deleteNotFound() {
+    void testDeleteNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.delete(3));
     }
 
     @Test
-    void get() {
+    void testGet() {
         Restaurant restaurant = service.get(FIRST_RESTAURANT_ID);
         assertMatch(restaurant, FIRST_RESTAURANT);
     }
 
     @Test
-    void getNotFound() {
+    void testGetNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.get(3));
     }
 
     @Test
-    void getAll() {
+    void testGetAll() {
         assertMatch(service.getAll(), FIRST_RESTAURANT, SECOND_RESTAURANT);
     }
 
     @Test
-    void getWithDishes() {
+    void testGetWithDishes() {
         Restaurant restaurant = service.getWithDishes(FIRST_RESTAURANT_ID);
         DishTestData.assertMatch(restaurant.getDishes(), DISH6, DISH5, DISH3, DISH4);
     }
 
     @Test
-    void getWithDishesNotFound() {
+    void testGetWithDishesNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.getWithDishes(3));
     }

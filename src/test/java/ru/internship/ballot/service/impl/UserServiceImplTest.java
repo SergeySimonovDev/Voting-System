@@ -31,27 +31,27 @@ class UserServiceImplTest {
     private UserRepository repository;
 
     @Test
-    void create() {
+    void testCreate() {
         User created = getCreated();
         service.create(created);
         assertMatch(repository.findAll(), USER1, USER2, ADMIN, created);
     }
 
     @Test
-    void duplicate() {
+    void testDuplicate() {
         User duplicate = getDuplicate();
         assertThrows(DataAccessException.class, () ->
                 service.create(duplicate));
     }
 
     @Test
-    void getByEmail() {
+    void testGetByEmail() {
         User user = service.getByEmail(EMAIL_USER1);
         assertMatch(user, USER1);
     }
 
     @Test
-    void getByEmailNotFound() {
+    void testGetByEmailNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.getByEmail("qwerty@microsoft.com"));
     }

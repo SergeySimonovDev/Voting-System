@@ -41,13 +41,13 @@ class VoteServiceImplTest {
     }
 
     @Test
-    void create() {
+    void testCreate() {
         service.create(UserTestData.USER1_ID, RestaurantTestData.FIRST_RESTAURANT_ID);
         assertMatch(service.getTodayVote(UserTestData.USER1_ID), TODAYVOTE_USER1);
     }
 
     @Test
-    void update() {
+    void testUpdate() {
         ValidationUtil.setRevoteDeadLine(LocalTime.of(23, 59, 59));
         Vote updated = getUpdated();
         service.update(updated, UserTestData.USER1_ID, RestaurantTestData.SECOND_RESTAURANT_ID);
@@ -55,7 +55,7 @@ class VoteServiceImplTest {
     }
 
     @Test
-    void updateDeadLineTime() {
+    void testUpdateDeadLineTime() {
         Vote updated = getUpdated();
         assertThrows(DataIntegrityViolationException.class,
                 () -> service.update(updated, UserTestData.USER1_ID, RestaurantTestData.SECOND_RESTAURANT_ID));
