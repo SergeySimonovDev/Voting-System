@@ -1,5 +1,7 @@
 package ru.internship.ballot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,6 +21,7 @@ public class Restaurant extends AbstractBaseEntity {
     @Size(min = 2, max = 120)
     private String address;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OrderBy("description ASC")
     private List<Dish> dishes;
