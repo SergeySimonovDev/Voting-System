@@ -13,7 +13,7 @@ INSERT INTO restaurants (title, address) VALUES
   ('Starbucks', 'Spb, Tulskay ul, d.96'),
   ('Tokyo City', 'Spb, pr. Tvorskogo, d.11');
   
-INSERT INTO dishes (restaurant_id, description, price, date, is_menu) VALUES
+INSERT INTO dishes (restaurant_id, title, price, date, is_menu) VALUES
   (100003, 'Mussels', 450,         '2018-12-02', false),
   (100004, 'Caesar salad', 550,    '2018-12-02', false),
   (100004, 'Cheesecake', 130,      '2018-12-03', false),

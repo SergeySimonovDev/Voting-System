@@ -9,12 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = {"title", "address"}, name = "restaurants_unique_title_address_idx")})
-public class Restaurant extends AbstractBaseEntity {
-
-    @Column(name = "title", nullable = false)
-    @NotBlank
-    @Size(min = 2, max = 120)
-    private String title;
+public class Restaurant extends AbstractTitleEntity {
 
     @Column(name = "address", nullable = false)
     @NotBlank
@@ -23,7 +18,7 @@ public class Restaurant extends AbstractBaseEntity {
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-    @OrderBy("description ASC")
+    @OrderBy("title")
     private List<Dish> dishes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
@@ -39,17 +34,8 @@ public class Restaurant extends AbstractBaseEntity {
     }
 
     public Restaurant(Integer id, String title, String address) {
-        super(id);
-        this.title = title;
+        super(id, title);
         this.address = address;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getAddress() {

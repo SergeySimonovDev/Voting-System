@@ -1,5 +1,6 @@
 package ru.internship.ballot.web.restaurant;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,6 +21,11 @@ class RestaurantUserRestControllerTest extends AbstractControllerTest {
 
     @Autowired
     private RestaurantService service;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        service.evictCache();
+    }
 
     @Test
     void getRestaurant() throws Exception {
