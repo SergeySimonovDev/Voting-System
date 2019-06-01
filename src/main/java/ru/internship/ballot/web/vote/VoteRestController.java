@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.internship.ballot.model.Vote;
 import ru.internship.ballot.service.VoteService;
 import ru.internship.ballot.web.SecurityUtil;
-import java.time.LocalDate;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = VoteRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,17 +26,15 @@ public class VoteRestController {
     public void vote(@PathVariable int restaurantId) {
 
         int userId = SecurityUtil.authUserId();
-   /*     Optional<Vote> vote = service.getTodayVote(userId);
+        Vote vote = service.getTodayVote(userId);
 
-        vote.ifPresentOrElse(
-                v -> {
-                    log.info("update vote {} for user {} and restaurant {}", v.getId(), userId, restaurantId);
-                    service.update(v, userId, restaurantId);
-                },
-                () -> {
-                    log.info("create vote for user {} and restaurant {}", userId, restaurantId);
-                    service.create(userId, restaurantId);
-                });*/
+        if (vote != null) {
+            log.info("update vote {} for user {} and restaurant {}", vote.getId(), userId, restaurantId);
+            service.update(vote, userId, restaurantId);
+        } else {
+            log.info("create vote for user {} and restaurant {}", userId, restaurantId);
+            service.create(userId, restaurantId);
+        }
 
     }
 

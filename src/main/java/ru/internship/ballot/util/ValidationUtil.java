@@ -1,9 +1,8 @@
 package ru.internship.ballot.util;
 
-import org.springframework.dao.DataIntegrityViolationException;
-
 import ru.internship.ballot.model.AbstractBaseEntity;
 import ru.internship.ballot.util.exception.NotFoundException;
+import ru.internship.ballot.util.exception.VotingTimeIsOverException;
 
 import java.time.LocalTime;
 
@@ -18,7 +17,7 @@ public class ValidationUtil {
 
     public static void checkDeadLineTime() {
         if (LocalTime.now().isAfter(revoteDeadLine)) {
-            throw new DataIntegrityViolationException("VOTE_MODIFICATION_RESTRICTION");
+            throw new VotingTimeIsOverException("VOTE_MODIFICATION_RESTRICTION");
         }
     }
 
@@ -63,6 +62,14 @@ public class ValidationUtil {
 
     public static void setDefaultDeadLine() {
         revoteDeadLine = DEADLINE_TIME;
+    }
+
+    public static void setUnreachableDeadLine() {
+        revoteDeadLine = LocalTime.MAX;
+    }
+
+    public static void setAbsoluteDeadLine() {
+        revoteDeadLine = LocalTime.MIN;
     }
 
 }

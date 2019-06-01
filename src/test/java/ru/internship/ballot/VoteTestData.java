@@ -36,6 +36,14 @@ public class VoteTestData {
         return vote;
     }
 
+    public static Vote getNextVote() {
+        Vote vote = new Vote(LocalDate.now());
+        vote.setId(NEXT_VOTE_ID);
+        vote.setRestaurant(FIRST_RESTAURANT);
+        vote.setUser(USER1);
+        return vote;
+    }
+
     public static void assertMatch(Vote actual, Vote expected) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, "user", "restaurant");
     }
