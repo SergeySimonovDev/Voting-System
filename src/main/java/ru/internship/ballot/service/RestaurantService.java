@@ -17,4 +17,6 @@ public interface RestaurantService {
     List<Restaurant> getAll();
 
     Restaurant getWithDishes(int id);
+
+    void evictCache();
 }
