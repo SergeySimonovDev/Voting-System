@@ -27,10 +27,6 @@ public class UserTo extends BaseTo implements Serializable {
     @Size(min = 5, max = 32)
     private String password;
 
-    // default is null
-    private transient Optional<Vote> todayVote;
-
-
     public UserTo() {
     }
 
@@ -63,14 +59,6 @@ public class UserTo extends BaseTo implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Optional<Vote> getTodayVote() {
-        return todayVote;
-    }
-
-    public void setTodayVote(Optional<Vote> todayVote) {
-        this.todayVote = todayVote;
     }
 
     @Override
