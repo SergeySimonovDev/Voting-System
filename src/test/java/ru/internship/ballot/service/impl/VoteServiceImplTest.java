@@ -34,7 +34,7 @@ class VoteServiceImplTest {
     private VoteRepository repository;
 
     @BeforeEach
-    void setDefaultDeadLine() {
+    void setUp() {
         ValidationUtil.setDefaultDeadLine();
     }
 
