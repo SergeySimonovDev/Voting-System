@@ -6,14 +6,12 @@ import org.springframework.http.MediaType;
 import ru.internship.ballot.service.RestaurantService;
 import ru.internship.ballot.web.AbstractControllerTest;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.internship.ballot.RestaurantTestData.*;
 import static ru.internship.ballot.TestUtil.userHttpBasic;
-import static ru.internship.ballot.UserTestData.ADMIN;
 import static ru.internship.ballot.UserTestData.USER1;
 
 class RestaurantUserRestControllerTest extends AbstractControllerTest {

@@ -11,8 +11,6 @@ import ru.internship.ballot.repository.UserRepository;
 import ru.internship.ballot.service.UserService;
 import ru.internship.ballot.util.exception.NotFoundException;
 
-import java.util.List;
-
 @Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
