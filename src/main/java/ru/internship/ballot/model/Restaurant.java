@@ -1,6 +1,6 @@
 package ru.internship.ballot.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ public class Restaurant extends AbstractTitleEntity {
     @Size(min = 2, max = 120)
     private String address;
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OrderBy("title")
     private List<Dish> dishes;
