@@ -7,14 +7,14 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ru.internship.ballot.DishTestData;
 import ru.internship.ballot.model.Dish;
 import ru.internship.ballot.service.DishService;
 import ru.internship.ballot.util.exception.NotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.internship.ballot.DishTestData.*;
-import static ru.internship.ballot.RestaurantTestData.*;
+import static ru.internship.ballot.RestaurantTestData.FIRST_RESTAURANT_ID;
+import static ru.internship.ballot.RestaurantTestData.SECOND_RESTAURANT_ID;
 
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml",
@@ -29,14 +29,14 @@ class DishServiceImplTest {
 
     @Test
     void testCreate() {
-        Dish created = DishTestData.getCreated();
+        Dish created = getCreated();
         service.create(created, FIRST_RESTAURANT_ID);
         assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH1, created, DISH3, DISH4);
     }
 
     @Test
     void testUpdate() {
-        Dish updated = DishTestData.getUpdated();
+        Dish updated = getUpdated();
         service.update(updated, FIRST_RESTAURANT_ID);
         assertMatch(service.getAll(FIRST_RESTAURANT_ID), DISH6, DISH2, DISH5, DISH3, DISH4, updated);
     }

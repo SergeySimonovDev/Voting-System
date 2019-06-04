@@ -10,15 +10,16 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.internship.ballot.DishTestData;
-import ru.internship.ballot.RestaurantTestData;
 import ru.internship.ballot.model.Restaurant;
 import ru.internship.ballot.service.RestaurantService;
 import ru.internship.ballot.util.exception.NotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static ru.internship.ballot.DishTestData.*;
+import static ru.internship.ballot.DishTestData.DISH6;
+import static ru.internship.ballot.DishTestData.DISH5;
+import static ru.internship.ballot.DishTestData.DISH3;
+import static ru.internship.ballot.DishTestData.DISH4;
 import static ru.internship.ballot.RestaurantTestData.*;
-import static ru.internship.ballot.RestaurantTestData.assertMatch;
 
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml",
@@ -38,21 +39,21 @@ class RestaurantServiceImplTest {
 
     @Test
     void testCreate() {
-        Restaurant created = RestaurantTestData.getCreated();
+        Restaurant created = getCreated();
         service.create(created);
         assertMatch(service.getAll(), created, FIRST_RESTAURANT, SECOND_RESTAURANT);
     }
 
     @Test
     void testDuplicate() {
-        Restaurant duplicate = RestaurantTestData.getDuplicate();
+        Restaurant duplicate = getDuplicate();
         assertThrows(DataAccessException.class, () ->
                 service.create(duplicate));
     }
 
     @Test
     void testUpdate() {
-        Restaurant updated = RestaurantTestData.getUpdated();
+        Restaurant updated = getUpdated();
         service.update(updated);
         assertMatch(service.getAll(), SECOND_RESTAURANT, updated);
     }
