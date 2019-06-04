@@ -19,8 +19,6 @@ public class DishTestData {
     public static final int DISH2_ID = START_SEQ + 8;
     public static final int DISH1_IN_MENU_ID = START_SEQ + 11;
 
-    private static final LocalDate dateAddByRestaurant = of(2018, Month.DECEMBER, 4);
-
     //Dishes NOT included in the menu
     public static final Dish DISH1 = new Dish(DISH1_ID, "Mussels", 450,
             of(2018, Month.DECEMBER, 2), false);

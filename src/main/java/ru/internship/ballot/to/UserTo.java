@@ -1,14 +1,11 @@
 package ru.internship.ballot.to;
 
-
 import org.hibernate.validator.constraints.SafeHtml;
-import ru.internship.ballot.model.Vote;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Optional;
 
 public class UserTo extends BaseTo implements Serializable {
     private static final long serialVersionUID = 1L;
