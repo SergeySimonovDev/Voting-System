@@ -1,7 +1,7 @@
-#Voting System, REST API
-###(Graduation project Topjava15) 
+# Voting System, REST API
+### (Graduation project Topjava15) 
 
-####_Specification_:
+#### _Specification_:
 
     Design and implement a REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) **without frontend**.
 
@@ -25,7 +25,7 @@
     It should contain the code and **README.md with API documentation and curl commands to get data for voting and vote.**
 
 
-####_Database diagram_:
+#### _Database diagram_:
 
 ![diagram](db_diagram.jpg)
 
