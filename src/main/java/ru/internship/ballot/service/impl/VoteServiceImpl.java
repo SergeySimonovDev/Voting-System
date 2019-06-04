@@ -3,18 +3,15 @@ package ru.internship.ballot.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-
 import ru.internship.ballot.model.Vote;
 import ru.internship.ballot.repository.RestaurantRepository;
 import ru.internship.ballot.repository.UserRepository;
 import ru.internship.ballot.repository.VoteRepository;
 import ru.internship.ballot.service.VoteService;
-import ru.internship.ballot.util.exception.NotFoundException;
-
 import java.time.LocalDate;
-import java.util.Optional;
 
 import static ru.internship.ballot.util.ValidationUtil.checkDeadLineTime;
+import static ru.internship.ballot.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("voteService")
 public class VoteServiceImpl implements VoteService {
@@ -40,7 +37,7 @@ public class VoteServiceImpl implements VoteService {
     public Vote update(Vote vote, int userId, int restaurantId) {
         Assert.notNull(vote, "vote must not be null");
         checkDeadLineTime();
-        return Optional.of(voteRepository.save(vote)).orElseThrow(() -> new NotFoundException("id=" + vote.getId()));
+        return checkNotFoundWithId(voteRepository.save(vote), vote.getId());
     }
 
     @Override

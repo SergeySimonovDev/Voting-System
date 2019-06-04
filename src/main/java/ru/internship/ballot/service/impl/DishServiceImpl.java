@@ -7,11 +7,9 @@ import ru.internship.ballot.model.Dish;
 import ru.internship.ballot.repository.DishRepository;
 import ru.internship.ballot.repository.RestaurantRepository;
 import ru.internship.ballot.service.DishService;
-
 import java.util.List;
-import java.util.Optional;
 
-import static ru.internship.ballot.util.ValidationUtil.checkNotFoundWithId;
+import static ru.internship.ballot.util.ValidationUtil.*;
 
 @Service("dishService")
 public class DishServiceImpl implements DishService {
@@ -46,8 +44,9 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish get(int id, int restaurantId) {
-        Optional<Dish> dish = dishRepository.findById(id);
-        return checkNotFoundWithId(dish.isPresent() && dish.get().getRestaurant().getId() == restaurantId ? dish.get() : null, id);
+        return checkNotFoundWithId(dishRepository.findById(id)
+                .filter(dish -> dish.getRestaurant().getId() == restaurantId)
+                .orElse(null), id);
     }
 
     @Override

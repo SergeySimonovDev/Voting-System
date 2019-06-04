@@ -11,6 +11,8 @@ import ru.internship.ballot.repository.UserRepository;
 import ru.internship.ballot.service.UserService;
 import ru.internship.ballot.util.exception.NotFoundException;
 
+import static ru.internship.ballot.util.ValidationUtil.checkNotFound;
+
 @Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
@@ -36,8 +38,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User getByEmail(String email) throws NotFoundException {
         Assert.notNull(email, "email must not be null");
-        return userRepository.getByEmail(email).orElseThrow(() -> new NotFoundException("email=" + email));
-
+        return checkNotFound(userRepository.getByEmail(email), "email=" + email);
     }
 
 }

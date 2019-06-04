@@ -10,7 +10,6 @@ import ru.internship.ballot.repository.RestaurantRepository;
 import ru.internship.ballot.service.RestaurantService;
 
 import java.util.List;
-import java.util.Optional;
 
 import static ru.internship.ballot.util.ValidationUtil.checkNotFoundWithId;
 
@@ -31,7 +30,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @CacheEvict(value = "restaurants", allEntries = true)
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
-        restaurantRepository.save(restaurant);
+        checkNotFoundWithId(restaurantRepository.save(restaurant), restaurant.getId());
     }
 
     @Override
@@ -42,8 +41,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant get(int id) {
-        Optional<Restaurant> restaurant = restaurantRepository.findById(id);
-        return checkNotFoundWithId(restaurant.orElse(null), id);
+        return checkNotFoundWithId(restaurantRepository.findById(id), id);
     }
 
     @Override
