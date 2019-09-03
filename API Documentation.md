@@ -238,7 +238,7 @@
 
 ### Request
 
-`GET /ballot//rest/profile/votes/{restaurantId}`
+`GET /ballot/rest/profile/votes/{restaurantId}`
 
     curl -s http://localhost:8080/ballot/rest/profile/votes/100004 --user user1@yandex.ru:password
 
@@ -257,7 +257,7 @@
 
 ### Request
 
-`GET /ballot//rest/profile/votes/{restaurantId}`
+`GET /ballot/rest/profile/votes/{restaurantId}`
 
     curl -s http://localhost:8080/ballot/rest/profile/votes/100004 --user user1@yandex.ru:password
 
