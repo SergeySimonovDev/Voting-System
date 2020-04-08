@@ -1,6 +1,6 @@
-# Voting System, REST API
+# V
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a661e8f1e874e1ca7f5a6ce00683e3c)](https://www.codacy.com/app/IzotopRaspadov/Voting-System?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=izotopraspadov/Voting-System&amp;utm_campaign=Badge_Grade)
-### (Graduation project Topjava15) 
+### Restful Service
 
 #### _Specification_:
 
